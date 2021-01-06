@@ -10,14 +10,15 @@ const Report = () => {
   const weather = useSelector(selectWeatherData);
   const fetching = useSelector(selectFetchingData);
   const error = useSelector(selectError);
-  const weatherReport = (
+
+  const weatherReport = Object.keys(weather).length ? (
     <ul className={styles.list}>
       {/* City Name */}
       <li className={styles.cityName}>{weather.name}</li>
       {/* Weather Icon */}
       <li className={styles.icon}>
         <img
-          src={`https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`}
+        src={`https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`}
         />
       </li>
       {/* Weather Parameter */}
@@ -35,11 +36,11 @@ const Report = () => {
       {/* Weather condition and description */}
       <li className={styles.description}>{weather.weather[0].description}</li>
     </ul>
-  );
+  ) : null;
 
   const errorReport = (
     <div className={styles.errorContainer}>
-      <p>{error}</p>
+      <p>{error}!</p>
     </div>
   );
 

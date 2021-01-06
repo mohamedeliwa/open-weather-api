@@ -7,16 +7,19 @@ const Form = () => {
   const dispatch = useDispatch();
   const [city, setCity] = useState("");
 
+  // handling user input
   const handleChange = (e) => {
     e.preventDefault();
     setCity(e.target.value);
   };
+  
+  // submitting the form and fetching weather data
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       dispatch(changeFetchingData(true));
-      // const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=24e9e140b52290917fe9128d99c60409`;
-      const url = "https://api.mocki.io/v1/cdf184843";
+      const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=24e9e140b52290917fe9128d99c60409&units=metric`;
+      // const url = "https://api.mocki.io/v1/cdf184843";
 
       const res = await fetch(url);
 
