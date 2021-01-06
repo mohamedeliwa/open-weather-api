@@ -27,7 +27,7 @@ const Form = () => {
 
       // url end-point with the {API KEY}
       // It's a temporary API KEY, just for task purposes
-      const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=24e9e140b52290917fe9128d99c60409&units=metric`;
+      const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=XXXXXXX&units=metric`;
 
       const res = await fetch(url);
 
