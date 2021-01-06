@@ -1,0 +1,20 @@
+.form {
+  background-color: white;
+  min-width: 50%;
+  max-width: 90%;
+  .submitBtn {
+    height: 2rem;
+    width: 20%;
+    background-color: #349aef;
+    border: none;
+    color: white;
+    outline: none;
+  }
+  .input {
+    height: 2rem;
+    width: 80%;
+    border: none;
+    outline: none;
+    padding-left: 6px;
+  }
+}
