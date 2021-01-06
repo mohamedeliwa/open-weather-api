@@ -51,6 +51,7 @@ const Form = () => {
         placeholder='"e.g London"'
         value={city}
         onChange={handleChange}
+        required
       />
       <input className={styles.submitBtn} type="submit" value="Find" />
     </form>
