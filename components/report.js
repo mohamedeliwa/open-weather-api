@@ -1,28 +1,55 @@
 import styles from "../styles/Report.module.scss";
-
+import { useSelector } from "react-redux";
+import {
+  selectWeatherData,
+  selectFetchingData,
+  selectError,
+} from "../redux/slice";
+import { Spinner } from "react-bootstrap";
 const Report = () => {
-  return (
+  const weather = useSelector(selectWeatherData);
+  const fetching = useSelector(selectFetchingData);
+  const error = useSelector(selectError);
+  const weatherReport = (
     <ul className={styles.list}>
       {/* City Name */}
-      <li className={styles.cityName}>Polan, US</li>
+      <li className={styles.cityName}>{weather.name}</li>
       {/* Weather Icon */}
       <li className={styles.icon}>
-        <img src="https://openweathermap.org/img/wn/01d@2x.png" />
+        <img
+          src={`https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`}
+        />
       </li>
       {/* Weather Parameter */}
-      <li className={styles.paramter}>Clear</li>
+      <li className={styles.paramter}>{weather.weather[0].main}</li>
       {/* Main Temperature */}
-      <li className={styles.temp}>-4.76 &deg;</li>
+      <li className={styles.temp}>{weather.main.temp} &deg;</li>
       <li className={styles.temps}>
         {/* Maximum temperature */}
-        <span className={styles.maxTemp}>-5.85 &deg; </span>{" "}
+        <span className={styles.maxTemp}>
+          {weather.main.temp_max} &deg;{" "}
+        </span>{" "}
         {/* Minimum temperature  */}
-        <span className={styles.minTemp}>-3.29 &deg;</span>
+        <span className={styles.minTemp}>{weather.main.temp_min} &deg;</span>
       </li>
       {/* Weather condition and description */}
-      <li className={styles.description}>clear sky</li>
+      <li className={styles.description}>{weather.weather[0].description}</li>
     </ul>
   );
+
+  const errorReport = (
+    <div className={styles.errorContainer}>
+      <p>{error}</p>
+    </div>
+  );
+
+  const spinner = (
+    <div className={styles.spinnerContainer}>
+      <Spinner animation="border" variant="light" />
+    </div>
+  );
+
+  return fetching ? spinner : error ? errorReport : weatherReport;
 };
 
 export default Report;
