@@ -19,6 +19,12 @@ const Form = () => {
     e.preventDefault();
     try {
       dispatch(changeFetchingData(true));
+      // validating the input to be only letters
+      if (!/^[a-z]+$/i.test(city)) {
+        dispatch(changeWeather({}));
+        throw new Error("Enter a valid city name")
+      }
+
       // url end-point with the {API KEY}
       // It's a temporary API KEY, just for task purposes
       const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=24e9e140b52290917fe9128d99c60409&units=metric`;
